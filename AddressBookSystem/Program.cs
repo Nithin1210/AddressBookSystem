@@ -6,11 +6,11 @@ internal class Program
 {
      static void Main(string[] args)
     {
-        Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Contact \n4. Display \n5. DeleteContact \n6. Exit");
         bool flag = true;string input = null,key=null ;
         AddressBook addressbook = new AddressBook();
         while(flag)
         {
+            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3.Edit Contact \n4. Display \n5. DeleteContact \n6. Exit");
             int option = Convert.ToInt32(Console.ReadLine());
             switch(option)
             {
@@ -21,6 +21,7 @@ internal class Program
                     break;
                 case 2:
                     addressbook.AddAddressBookToDictionary();
+
                     break;
 
                 case 3:

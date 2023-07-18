@@ -34,6 +34,7 @@ namespace AddressBookSystem
         }
         public void AddAddressBookToDictionary()
         {
+            Console.WriteLine("ENter a key ");
             string uniqueName = Console.ReadLine();
             dict.Add(uniqueName, addressBook);
             addressBook = null;
