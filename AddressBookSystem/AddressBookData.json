@@ -1,0 +1,57 @@
+{
+  "Nithin": [
+    {
+      "FirstName": "a",
+      "LastName": "v",
+      "Address": "f",
+      "City": "q",
+      "State": "r",
+      "Zip": 1,
+      "PhoneNumber": 123,
+      "Email": "a@"
+    },
+      "Reddy": [
+    {
+      "FirstName": "Nithin",
+      "LastName": "Reddy",
+      "Address": "qwe",
+      "City": "asd",
+      "State": "zxc",
+      "Zip": 123,
+      "PhoneNumber": 1234,
+      "Email": "Nit@"
+    },
+    {
+      "FirstName": "v",
+      "LastName": "w",
+      "Address": "v",
+      "City": "c",
+      "State": "a",
+      "Zip": 2,
+      "PhoneNumber": 2,
+      "Email": "e"
+    }
+  ],
+  "Reddy": [
+    {
+      "FirstName": "nani",
+      "LastName": "Reddy",
+      "Address": "ab",
+      "City": "cde",
+      "State": "fgh",
+      "Zip": 123,
+      "PhoneNumber" :0,
+      "Email": "nani@"
+    },
+    {
+      "FirstName": "a",
+      "LastName": "a",
+      "Address": "g",
+      "City": "hj",
+      "State": "jkl",
+      "Zip": 3,
+      "PhoneNumber": 333,
+      "Email": "acd@"
+    }
+  ]
+}

@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
+using Newtonsoft.Json;
 
 namespace AddressBookSystem
 {
@@ -114,5 +115,24 @@ namespace AddressBookSystem
                 }
             }   
           }
+        public void WriteToJsonFile(string filepath)
+        {
+            var json = JsonConvert.SerializeObject(dict);
+            File.WriteAllText(filepath, json);
+        }
+        public bool Check(Contact contact)
+        {
+            string name = contact.FirstName;
+            List<Contact> list2 = null;
+            foreach (var data in dict)
+            {
+                list2 = data.Value.Where(x => x.FirstName.Equals(name)).ToList();
+            }
+            if (list2 == null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
