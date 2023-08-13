@@ -12,7 +12,7 @@ public class Program
         AddressBook addressbook = new AddressBook();
         while(flag)
         {
-            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3.Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json");
+            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json");
             int option = Convert.ToInt32(Console.ReadLine());
             switch(option)
             {

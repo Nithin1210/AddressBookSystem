@@ -15,8 +15,7 @@ namespace AddressBookSystem
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
         public void CreateContact()
         {
-            Console.WriteLine("Enter the details :\n1.FirstName \n2.LastName\n3.Address\n4.City\n5.State" +
-                "\n6.Zip\n7.PhoneNumber\n8.Email ");
+            Console.WriteLine("Enter the details :\n1.FirstName \n2.LastName\n3.Address\n4.City\n5.State\n6.Zip\n7.PhoneNumber\n8.Email ");
             Contact contact = new Contact()
             {
                 FirstName = Console.ReadLine(),
@@ -29,16 +28,23 @@ namespace AddressBookSystem
                 Email = Console.ReadLine()
 
             };
-            Console.WriteLine(contact.FirstName + "\n " + contact.LastName + "\n " + contact.Address + "\n " + contact.City +
+            if (CheckName(contact))
+            {
+                Console.WriteLine("Name is already present");
+            }
+            else
+            {
+                Console.WriteLine(contact.FirstName + "\n " + contact.LastName + "\n " + contact.Address + "\n " + contact.City +
                 "\n " + contact.State + "\n " + contact.Zip + "\n " + contact.PhoneNumber + "\n " + contact.Email);
-            addressBook.Add(contact);
+                addressBook.Add(contact);
+            }
         }
         public void AddAddressBookToDictionary()
         {
             Console.WriteLine("ENter a key ");
             string uniqueName = Console.ReadLine();
             dict.Add(uniqueName, addressBook);
-            addressBook = null;
+            addressBook = new List<Contact>();
         }
         public void EditContact(string name, string contactName)
         {
@@ -99,10 +105,12 @@ namespace AddressBookSystem
                         }
                 }
                 data.Value.Remove(contact);
+                Console.WriteLine("Contact got Removed Sucessfully");
 
             }
         }
-
+    
+            
           public void Display()
           {
             foreach(var item in dict)
@@ -120,7 +128,7 @@ namespace AddressBookSystem
             var json = JsonConvert.SerializeObject(dict);
             File.WriteAllText(filepath, json);
         }
-        public bool Check(Contact contact)
+        public bool CheckName(Contact contact)
         {
             string name = contact.FirstName;
             List<Contact> list2 = null;
