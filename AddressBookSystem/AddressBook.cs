@@ -142,5 +142,17 @@ namespace AddressBookSystem
             }
             return true;
         }
+        public void GetDetailsFromCityorState(string input)
+        {
+            List<Contact> result = null;
+            foreach (var data in dict)
+            {
+                result = data.Value.Where(x => x.City.Equals(input) || x.State.Equals(input)).ToList();
+            }
+            foreach (var contact in result)
+            {
+                Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
+            }
+        }
     }
 }

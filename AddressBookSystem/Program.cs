@@ -12,7 +12,7 @@ public class Program
         AddressBook addressbook = new AddressBook();
         while(flag)
         {
-            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json");
+            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json\n7. SearchBy_State\n8. Exit ");
             int option = Convert.ToInt32(Console.ReadLine());
             switch(option)
             {
@@ -44,8 +44,13 @@ public class Program
                 case 6:
                     addressbook.WriteToJsonFile(file_path);
                     break;  
-
                 case 7:
+                    Console.WriteLine("Enter city or state name / in words");
+                    string city = Console.ReadLine();
+                    addressbook.GetDetailsFromCityorState(city);
+                    break;
+
+                case 8:
                     flag = false;
                     break;
 
