@@ -13,6 +13,7 @@ namespace AddressBookSystem
     {
         List<Contact> addressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> citystateDict = new Dictionary<string, List<Contact>>();
         public void CreateContact()
         {
             Console.WriteLine("Enter the details :\n1.FirstName \n2.LastName\n3.Address\n4.City\n5.State\n6.Zip\n7.PhoneNumber\n8.Email ");
@@ -142,6 +143,8 @@ namespace AddressBookSystem
             }
             return true;
         }
+
+
         public void GetDetailsFromCityorState(string input)
         {
             List<Contact> result = null;
@@ -150,6 +153,28 @@ namespace AddressBookSystem
                 result = data.Value.Where(x => x.City.Equals(input) || x.State.Equals(input)).ToList();
             }
             foreach (var contact in result)
+            {
+                Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
+            }
+            citystateDict.Add(input, result);
+            DisplayDict(citystateDict);
+        }
+
+        public void DisplayDict(Dictionary<string, List<Contact>> dict)
+        {
+            foreach (var data in dict)
+            {
+                Console.WriteLine("Key : " + data.Key);
+                foreach (var contact in data.Value)
+                {
+                    Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
+                }
+            }
+        }
+
+        public void DisplayList(List<Contact> list)
+        {
+            foreach (var contact in list)
             {
                 Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
             }

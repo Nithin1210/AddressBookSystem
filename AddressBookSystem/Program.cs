@@ -12,7 +12,7 @@ public class Program
         AddressBook addressbook = new AddressBook();
         while(flag)
         {
-            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json\n7. SearchBy_State\n8. Exit ");
+            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json\n7. SearchBy_State n city\n8. Exit ");
             int option = Convert.ToInt32(Console.ReadLine());
             switch(option)
             {
@@ -53,7 +53,9 @@ public class Program
                 case 8:
                     flag = false;
                     break;
-
+                default:
+                    Console.WriteLine("!! Enter the Correct input !! :");
+                    break;
             }
         }
 
