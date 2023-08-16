@@ -318,6 +318,9 @@ namespace AddressBookSystem
                         }
                     }
                     break;
+                default:
+                    Console.WriteLine(" Enter the correct number !!");
+                    return;
             }
         }
 
