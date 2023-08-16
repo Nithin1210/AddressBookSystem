@@ -53,6 +53,8 @@ public class Program
                 case 8:
                     flag = false;
                     break;
+                default: Console.WriteLine("Bye bye , Enter the Correct input");
+                    break;
 
             }
         }
