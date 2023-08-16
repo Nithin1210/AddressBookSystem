@@ -344,6 +344,42 @@ namespace AddressBookSystem
             }
         }
 
+        public void WriteToFile(string filepath)
+        {
+            using (StreamWriter stream = File.AppendText(filepath))
+            {
+                foreach (var data in dict)
+                {
+                    stream.WriteLine(data.Key);
+                    foreach (var contact in data.Value)
+                    {
+                        stream.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" + contact.PhoneNumber
+                            + "\n" + contact.Email);
+                    }
+                }
+                stream.Close();
+            }
+        }
+        public void ReadFromFile(string filepath)
+        {
+            using (StreamReader stream = File.OpenText(filepath))
+            {
+                string set = "";
+                while ((set = stream.ReadLine()) != null)
+                {
+                    Console.WriteLine(set);
+                }
+            }
+        }
+
+        public void ReadFromJsonFile(string filepath)
+        {
+            var json = File.ReadAllText(filepath);
+            dict = JsonConvert.DeserializeObject<Dictionary<string, List<Contact>>>(json);
+            DisplayDict(dict);
+        }
+
+
     }
     
 }

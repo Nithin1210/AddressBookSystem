@@ -6,6 +6,7 @@ using System.Threading.Channels;
 public class Program
 {
     static string file_path = @"E:\BridgeLabz\AddressBookSystem\AddressBookSystem\AddressBookSystem\AddressBookData.json";
+    static string txt_path  = @"E:\BridgeLabz\AddressBookSystem\AddressBookSystem\AddressBookSystem\AddressBookFile.txt";
     static void Main(string[] args)
     {
         bool flag = true;string input = null,key=null ;
@@ -25,7 +26,6 @@ public class Program
                     addressbook.AddAddressBookToDictionary();
 
                     break;
-
                 case 3:
                     Console.WriteLine("Enter name To edit Contact Details :-");
                     key= Console.ReadLine();
@@ -75,9 +75,20 @@ public class Program
                     addressbook.SortingEntries(ch);
                     break;
                 case 13:
+                    Console.WriteLine("Enter the input : \n 1.Read from file 2.Write to file");
+                    int ch1 = Convert.ToInt32(Console.ReadLine());
+                    if (ch1 == 1)
+                    {
+                        addressbook.ReadFromFile(txt_path);
+                    }
+                    if (ch1 == 2)
+                    {
+                        addressbook.WriteToFile(txt_path);
+                    }
+                    break;
+                case 14:
                     flag = false;
                     break;
-
                 default:
                     Console.WriteLine("!! Enter the Correct input !! :");
                     break;
