@@ -12,7 +12,7 @@ public class Program
         AddressBook addressbook = new AddressBook();
         while(flag)
         {
-            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json\n7. Search using 'State'_Dict\n8. Search Using 'City'_Dict \n9. Number of contacts in state \n10. Number of contacts in City\n11. Exit ");
+            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json\n7. Search using 'State'_Dict\n8. Search Using 'City'_Dict \n9. Number of contacts in state \n10. Number of contacts in City\n11. AddToCity,StateDictionary \n12. Sorting the entries\n13. Exit");
             int option = Convert.ToInt32(Console.ReadLine());
             switch(option)
             {
@@ -65,6 +65,16 @@ public class Program
                     addressbook.GetContactCountFromCity(cityname);
                     break;
                 case 11:
+                    addressbook.SearchByCity();
+                    addressbook.SearchByState();
+                    break;
+                case 12:
+                    Console.WriteLine("sort using :-");
+                    Console.WriteLine("1.Name || 2.State || 3.City");
+                    int ch = Convert.ToInt32(Console.ReadLine());
+                    addressbook.SortingEntries(ch);
+                    break;
+                case 13:
                     flag = false;
                     break;
 
