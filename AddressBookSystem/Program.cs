@@ -59,7 +59,7 @@ public class Program
                     break;
 
                 default:
-                    Console.WriteLine("!! Enter the Correct input !! :-");
+                    Console.WriteLine("!! Enter the Correct input !! :");
                     break;
 
 

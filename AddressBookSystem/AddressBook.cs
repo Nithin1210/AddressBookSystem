@@ -19,7 +19,7 @@ namespace AddressBookSystem
 
         public void CreateContact()
         {
-            Console.WriteLine("Enter the details :\n1.FirstName \n2.LastName\n3.Address\n4.City\n5.State\n6.Zip\n7.PhoneNumber\n8.Email ");
+            Console.WriteLine("Enter the details :-\n1.FirstName \n2.LastName\n3.Address\n4.City\n5.State\n6.Zip\n7.PhoneNumber\n8.Email ");
             Contact contact = new Contact()
             {
                 FirstName = Console.ReadLine(),
