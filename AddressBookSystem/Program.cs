@@ -54,7 +54,7 @@ public class Program
                     flag = false;
                     break;
                 default:
-                    Console.WriteLine("!! Enter the Correct input !! :");
+                    Console.WriteLine("!! Enter the Correct input !! :-");
                     break;
             }
         }
