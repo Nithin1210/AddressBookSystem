@@ -16,6 +16,7 @@ namespace AddressBookSystem
         Dictionary<string, List<Contact>> cityDict = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> stateDict = new Dictionary<string, List<Contact>>();
 
+
         public void CreateContact()
         {
             Console.WriteLine("Enter the details :\n1.FirstName \n2.LastName\n3.Address\n4.City\n5.State\n6.Zip\n7.PhoneNumber\n8.Email ");
@@ -149,29 +150,86 @@ namespace AddressBookSystem
         }
 
 
+        public void SearchByState()
+        {
+            foreach (var data in dict.Values)
+            {
+                foreach (var item in data)
+                {
+                    if (!stateDict.Keys.Equals(item.State) && !stateDict.ContainsKey(item.State))
+                    {
+                        List<Contact> list = new List<Contact>();
+                        list.Add(item);
+                        stateDict.Add(item.State, list);
+                    }
+                    else
+                    {
+                        foreach (var states in stateDict)
+                        {
+                            if (states.Key.Equals(item.State))
+                            {
+                                states.Value.Add(item);
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        public void SearchByCity()
+        {
+            foreach (var data in dict.Values)
+            {
+                foreach (var item in data)
+                {
+                    if (!cityDict.Keys.Equals(item.City))
+                    {
+                        List<Contact> list = new List<Contact>();
+                        list.Add(item);
+                        cityDict.Add(item.City, list);
+                    }
+                    else
+                    {
+                        foreach (var cities in cityDict)
+                        {
+                            if (cities.Key.Equals(item.City))
+                            {
+                                cities.Value.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         public void GetDetailsFromState(string input)
         {
-            List<Contact> result = null;
-            foreach (var data in cityDict)
+            foreach (var data in stateDict)
             {
-                result = data.Value.Where(x => x.State.Equals(input)).ToList();
+                if (data.Key.Equals(input))
+                {
+                    Console.WriteLine("State : " + data.Key);
+                    var statelist = stateDict.GetValueOrDefault(data.Key);
+                    DisplayList(statelist.ToList());
+                }
             }
-            stateDict.Add(input, result);
-            DisplayDict(stateDict);
-
         }
         public void GetDetailsFromCity(string input)
         {
-            List<Contact> result = null;
-            foreach (var data in dict)
+            foreach (var data in cityDict)
             {
-                result = data.Value.Where(x => x.City.Equals(input)).ToList();
+                if (data.Key.Equals(input))
+                {
+                    Console.WriteLine("City : " + data.Key);
+                    var clist = cityDict.GetValueOrDefault(data.Key);
+                    DisplayList(clist.ToList());
+                }
             }
 
-            cityDict.Add(input, result);
-            DisplayDict(cityDict);
-
         }
+
+
         public void DisplayDict(Dictionary<string, List<Contact>> dict)
         {
             foreach (var data in dict)
@@ -193,4 +251,5 @@ namespace AddressBookSystem
         }
 
     }
+    
 }
