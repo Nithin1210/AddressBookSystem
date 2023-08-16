@@ -12,7 +12,7 @@ public class Program
         AddressBook addressbook = new AddressBook();
         while(flag)
         {
-            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json\n7. Search using 'State'_Dict\n8. Search Using 'City'_Dict \n9. Exit ");
+            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json\n7. Search using 'State'_Dict\n8. Search Using 'City'_Dict \n9. Number of contacts in state \n10. Number of contacts in City\n11. Exit ");
             int option = Convert.ToInt32(Console.ReadLine());
             switch(option)
             {
@@ -55,6 +55,16 @@ public class Program
                     addressbook.GetDetailsFromCity(city);
                     break;
                 case 9:
+                    Console.WriteLine("Enter the State name:");
+                    string statename = Console.ReadLine();
+                    addressbook.GetContactCountFromState(statename);
+                    break;
+                case 10:
+                    Console.WriteLine("Enter the City name:");
+                    string cityname= Console.ReadLine();
+                    addressbook.GetContactCountFromCity(cityname);
+                    break;
+                case 11:
                     flag = false;
                     break;
 

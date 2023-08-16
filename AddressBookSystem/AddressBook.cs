@@ -15,6 +15,9 @@ namespace AddressBookSystem
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> cityDict = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> stateDict = new Dictionary<string, List<Contact>>();
+        int stateCount, cityCount;
+
+
 
 
         public void CreateContact()
@@ -205,6 +208,7 @@ namespace AddressBookSystem
 
         public void GetDetailsFromState(string input)
         {
+            stateCount = 0;
             foreach (var data in stateDict)
             {
                 if (data.Key.Equals(input))
@@ -212,23 +216,37 @@ namespace AddressBookSystem
                     Console.WriteLine("State : " + data.Key);
                     var statelist = stateDict.GetValueOrDefault(data.Key);
                     DisplayList(statelist.ToList());
+                    stateCount = statelist.Count;
+
                 }
             }
         }
         public void GetDetailsFromCity(string input)
         {
+            cityCount = 0;
             foreach (var data in cityDict)
             {
                 if (data.Key.Equals(input))
                 {
                     Console.WriteLine("City : " + data.Key);
-                    var clist = cityDict.GetValueOrDefault(data.Key);
-                    DisplayList(clist.ToList());
+                    var citylist = cityDict.GetValueOrDefault(data.Key);
+                    DisplayList(citylist.ToList());
+                    cityCount = citylist.Count;
                 }
             }
 
         }
 
+        public void GetContactCountFromState(string input)
+        {
+            GetDetailsFromState(input);
+            Console.WriteLine("Count is :- " + stateCount);
+        }
+        public void GetContactCountFromCity(string input)
+        {
+            GetDetailsFromCity(input);
+            Console.WriteLine("Count is :- " + cityCount);
+        }
 
         public void DisplayDict(Dictionary<string, List<Contact>> dict)
         {
