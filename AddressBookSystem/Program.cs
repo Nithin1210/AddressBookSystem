@@ -12,7 +12,7 @@ public class Program
         AddressBook addressbook = new AddressBook();
         while(flag)
         {
-            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json\n7. SearchBy_State n city\n8. Exit ");
+            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json\n7. Search using 'State'_Dict\n8. Search Using 'City'_Dict \n9. Exit ");
             int option = Convert.ToInt32(Console.ReadLine());
             switch(option)
             {
@@ -45,12 +45,16 @@ public class Program
                     addressbook.WriteToJsonFile(file_path);
                     break;  
                 case 7:
-                    Console.WriteLine("Enter city or state name / in words");
-                    string city = Console.ReadLine();
-                    addressbook.GetDetailsFromCityorState(city);
+                    Console.WriteLine("Enter  'state_name' ,In words :-");
+                    string state = Console.ReadLine();
+                    addressbook.GetDetailsFromState(state);
                     break;
-
                 case 8:
+                    Console.WriteLine("Enter 'City_Name' ,In words :-");
+                    string city = Console.ReadLine();
+                    addressbook.GetDetailsFromCity(city);
+                    break;
+                case 9:
                     flag = false;
                     break;
                 default:

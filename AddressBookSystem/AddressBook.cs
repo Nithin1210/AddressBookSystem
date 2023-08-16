@@ -13,7 +13,9 @@ namespace AddressBookSystem
     {
         List<Contact> addressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
-        Dictionary<string, List<Contact>> citystateDict = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> cityDict = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> stateDict = new Dictionary<string, List<Contact>>();
+
         public void CreateContact()
         {
             Console.WriteLine("Enter the details :\n1.FirstName \n2.LastName\n3.Address\n4.City\n5.State\n6.Zip\n7.PhoneNumber\n8.Email ");
@@ -106,7 +108,7 @@ namespace AddressBookSystem
                         }
                 }
                 data.Value.Remove(contact);
-                Console.WriteLine("Contact got Removed Sucessfully");
+                Console.WriteLine(" !! Contact Terminated !!");
 
             }
         }
@@ -119,7 +121,7 @@ namespace AddressBookSystem
                 Console.WriteLine(item.Key);
                 foreach (var data in item.Value)
                 {
-                    Console.WriteLine(data.FirstName + "\n" + data.LastName + "\n" + data.Address + "n" + data.City + "\n" + data.State + "\n" + data.Zip +
+                    Console.WriteLine(data.FirstName + "\n" + data.LastName + "\n" + data.Address + "\n" + data.City + "\n" + data.State + "\n" + data.Zip +
                         "\n" + data.PhoneNumber + "\n" + data.Email);
                 }
             }   
@@ -129,37 +131,47 @@ namespace AddressBookSystem
             var json = JsonConvert.SerializeObject(dict);
             File.WriteAllText(filepath, json);
         }
+
         public bool CheckName(Contact contact)
         {
             string name = contact.FirstName;
-            List<Contact> list2 = null;
             foreach (var data in dict)
             {
-                list2 = data.Value.Where(x => x.FirstName.Equals(name)).ToList();
+                foreach (var item in data.Value)
+                {
+                    if (item.FirstName.Equals(name))
+                    {
+                        return true;
+                    }
+                }
             }
-            if (list2 == null)
-            {
-                return false;
-            }
-            return true;
+            return false;
         }
 
 
-        public void GetDetailsFromCityorState(string input)
+        public void GetDetailsFromState(string input)
+        {
+            List<Contact> result = null;
+            foreach (var data in cityDict)
+            {
+                result = data.Value.Where(x => x.State.Equals(input)).ToList();
+            }
+            stateDict.Add(input, result);
+            DisplayDict(stateDict);
+
+        }
+        public void GetDetailsFromCity(string input)
         {
             List<Contact> result = null;
             foreach (var data in dict)
             {
-                result = data.Value.Where(x => x.City.Equals(input) || x.State.Equals(input)).ToList();
+                result = data.Value.Where(x => x.City.Equals(input)).ToList();
             }
-            foreach (var contact in result)
-            {
-                Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
-            }
-            citystateDict.Add(input, result);
-            DisplayDict(citystateDict);
-        }
 
+            cityDict.Add(input, result);
+            DisplayDict(cityDict);
+
+        }
         public void DisplayDict(Dictionary<string, List<Contact>> dict)
         {
             foreach (var data in dict)
@@ -179,5 +191,6 @@ namespace AddressBookSystem
                 Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
             }
         }
+
     }
 }
