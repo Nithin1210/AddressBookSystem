@@ -2,10 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Formats.Asn1;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using CsvHelper;
 
 namespace AddressBookSystem
 {
@@ -130,11 +133,7 @@ namespace AddressBookSystem
                 }
             }   
           }
-        public void WriteToJsonFile(string filepath)
-        {
-            var json = JsonConvert.SerializeObject(dict);
-            File.WriteAllText(filepath, json);
-        }
+        
 
         public bool CheckName(Contact contact)
         {
@@ -372,6 +371,39 @@ namespace AddressBookSystem
             }
         }
 
+  
+        public void ReadCSVFile(string filepath)
+        {
+            using (var reader = new StreamReader(filepath))
+            {
+                using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    var records = CSV.GetRecords<Contact>().ToList();
+                    foreach (var data in records)
+                    {
+                        Console.WriteLine(data.FirstName + "\n" + data.LastName + "\n" + data.Address + "\n" + data.City + "\n" + data.State + "\n" + data.Zip + "\n" + data.PhoneNumber + "\n" + data.Email);
+                    }
+                }
+            }
+        }
+        public void WriteCSVfile(string filepath)
+        {
+            using (var writer = new StreamWriter(filepath))
+            {
+                using (var csvExport = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    foreach (var data in dict)
+                    {
+                        csvExport.WriteRecords(data.Value);
+                    }
+                }
+            }
+        }
+        public void WriteToJsonFile(string filepath)
+        {
+            var json = JsonConvert.SerializeObject(dict);
+            File.WriteAllText(filepath, json);
+        }
         public void ReadFromJsonFile(string filepath)
         {
             var json = File.ReadAllText(filepath);
