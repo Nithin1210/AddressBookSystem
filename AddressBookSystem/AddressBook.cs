@@ -370,35 +370,38 @@ namespace AddressBookSystem
                 }
             }
         }
-
-  
-        public void ReadCSVFile(string filepath)
-        {
-            using (var reader = new StreamReader(filepath))
-            {
-                using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
-                {
-                    var records = CSV.GetRecords<Contact>().ToList();
-                    foreach (var data in records)
-                    {
-                        Console.WriteLine(data.FirstName + "\n" + data.LastName + "\n" + data.Address + "\n" + data.City + "\n" + data.State + "\n" + data.Zip + "\n" + data.PhoneNumber + "\n" + data.Email);
-                    }
-                }
-            }
-        }
-        public void WriteCSVfile(string filepath)
+        public void ExportToCsv(string filepath)
         {
             using (var writer = new StreamWriter(filepath))
             {
-                using (var csvExport = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
                     foreach (var data in dict)
                     {
-                        csvExport.WriteRecords(data.Value);
+                        csv.WriteField(data.Key);
+                        csv.WriteField("");
+
+                        foreach (var contact in data.Value)
+                        {
+                            csv.WriteField(contact.FirstName);
+                            csv.WriteField(contact.LastName);
+                            csv.WriteField(contact.Address);
+                            csv.WriteField(contact.City);
+                            csv.WriteField(contact.State);
+                            csv.WriteField(contact.Zip);
+                            csv.WriteField(contact.PhoneNumber);
+                            csv.WriteField(contact.Email);
+
+                            csv.WriteField("||");
+                        }
+
+                        csv.NextRecord();
                     }
                 }
             }
         }
+
+
         public void WriteToJsonFile(string filepath)
         {
             var json = JsonConvert.SerializeObject(dict);
@@ -410,8 +413,6 @@ namespace AddressBookSystem
             dict = JsonConvert.DeserializeObject<Dictionary<string, List<Contact>>>(json);
             DisplayDict(dict);
         }
-
-
     }
     
 }

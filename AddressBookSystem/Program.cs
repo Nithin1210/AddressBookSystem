@@ -7,13 +7,14 @@ public class Program
 {
     static string file_path = @"E:\BridgeLabz\AddressBookSystem\AddressBookSystem\AddressBookSystem\AddressBookData.json";
     static string txt_path  = @"E:\BridgeLabz\AddressBookSystem\AddressBookSystem\AddressBookSystem\AddressBookFile.txt";
+    static string csv_path = @"E:\BridgeLabz\AddressBookSystem\AddressBookSystem\AddressBookSystem\AddressBookCSV.csv";
     static void Main(string[] args)
     {
         bool flag = true;string input = null,key=null ;
         AddressBook addressbook = new AddressBook();
         while(flag)
         {
-            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json\n7. Search using 'State'_Dict\n8. Search Using 'City'_Dict \n9. Number of contacts in state \n10. Number of contacts in City\n11. AddToCity,StateDictionary \n12. Sorting the entries\n13. Read aand to File \n.15 Read Json File \n.16 Exit");
+            Console.WriteLine("Enter the option to be proceded : \n1. Create Contact \n2. AddAddressBookToDictionary \n3. Edit Contact \n4. Display \n5. DeleteContact \n6. Dict to Json\n7. Search using 'State'_Dict\n8. Search Using 'City'_Dict \n9. Number of contacts in state \n10. Number of contacts in City\n11. AddToCity,StateDictionary \n12. Sorting the entries\n13. Read aand to File\n14. Export TO CSV \n15. Read Json File \n.16 Exit");
             int option = Convert.ToInt32(Console.ReadLine());
             switch(option)
             {
@@ -86,6 +87,10 @@ public class Program
                         addressbook.WriteToFile(txt_path);
                     }
                     break;
+                case 14:
+                    Console.WriteLine("EXport to csv !! ");
+                    addressbook.ExportToCsv(csv_path);
+                    break; 
                 case 15:
                     addressbook.ReadFromJsonFile(file_path);
                     break;
